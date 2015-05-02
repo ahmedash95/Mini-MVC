@@ -40,8 +40,8 @@ class App {
             }
             
         }else{
-            require PATH.DS.'application/controllers'.DS.'home.php';
-            $this->controller = new home ();
+            require PATH.DS.'application/controllers'.DS.'login.php';
+            $this->controller = new login ();
         }
         
     }
