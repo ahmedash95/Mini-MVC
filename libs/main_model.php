@@ -6,7 +6,7 @@
         private $dsn = "mysql:host=localhost;dbname=task5";
         private $username = "root";
         private $password = "";
-        private $tableName = 'user';
+        protected   $tableName = 'user';
         
         private $query; //database query object
         
@@ -119,10 +119,17 @@
             $this->bindValues($data);
             
             $this->execute();
+
+            if($this->rowCount() == 0) {
+                return false;
+            }else{
+                return true;
+            }
+
         }
         
-        public function basicSelect ($data = null,$options = array("*")) {
-            
+        public function basicSelect ($data = null,$limit = null,$options = array("*")) {
+
             $options = implode(',',$options);
             
             if (isset($data)) {
@@ -154,8 +161,11 @@
             $this->execute();
             
             if($this->rowCount() == 0) $result = false;
-            elseif($this->rowCount() == 1) $result = $this->fetch();
-            elseif($this->rowCount() > 1) $result = $this->fetchAll();
+            if($limit == 1) {
+                $result = $this->fetch();
+            }else{
+                $result = $this->fetchAll();
+            }
             
             return $result;
             

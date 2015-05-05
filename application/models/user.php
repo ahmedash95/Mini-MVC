@@ -39,7 +39,7 @@ class User extends MainModel {
         return isset($error) ? $error : null;
     }
     
-    public function insert_user ($username,$password,$email,$permission='user') {
+    public function insertUser ($username,$password,$email,$permission='user') {
         
         $data = array(
             'username'      =>$this->escape($username),
@@ -65,6 +65,13 @@ class User extends MainModel {
         );
         
         $this->basicUpdate($data,$where);
+
+        if($this->rowCount() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+
     }
     
     public function deleteUser ($id) {
@@ -73,6 +80,14 @@ class User extends MainModel {
         $this->prepare("DELETE FROM user WHERE id=:id");
         $this->bindParam(":id",$id);
         $this->execute();
+
+        if($this->rowCount() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+
+
         
     }
     

@@ -11,6 +11,7 @@ class App {
         $url = escape(rtrim($url,'/'));
         $urls = explode('/',escape($url));
     
+        //print_r($urls);
         
         if(!empty($urls[0])) {
             
@@ -32,7 +33,12 @@ class App {
                     }else{
                         echo "the method dosn't exists <br>";
                     }
-                    
+
+                }else{
+
+                    if(method_exists($this->controller,"index")) {
+                        call_user_func(array($this->controller,"index"));
+                    }
                 }
                 
             }else {

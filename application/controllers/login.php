@@ -7,6 +7,7 @@ class Login extends MainController{
         if(isset($_SESSION['username'])) {
             header ("location: ".URL."main");
         }
+
         $this->user = $this->model('user');
         
         $data = array();
@@ -25,10 +26,10 @@ class Login extends MainController{
                       'username' => $username
                     );
                     
-                    $user = $this->user->basicSelect($data);
-                                       
+                    $user = $this->user->basicSelect($data,1);
+
+                    $_SESSION['id'] = $user['id'];
                     $_SESSION['username'] = $username;
-                    //$user['username']; 
                     $_SESSION['permission'] = $user['permission'];
                     
                     header("location: ".URL."main");

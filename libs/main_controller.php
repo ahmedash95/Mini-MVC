@@ -30,7 +30,11 @@ class MainController {
             extract($data);
             
             require PATH.DS.'application/views'.DS.$view_name.'.php';
+
+            return true;
         
+        }else{
+            return false;
         }
         
         

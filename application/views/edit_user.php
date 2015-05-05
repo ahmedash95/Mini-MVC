@@ -23,7 +23,7 @@
                     <option value="admin">user</option>
                 </select>
             </p>
-            <p><input type="submit" name="submit" value="Edit User"></p>
+            <p><input type="submit" name="edit" value="Edit User"></p>
             
         </fieldset>
         
