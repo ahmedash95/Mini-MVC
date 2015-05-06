@@ -51,13 +51,12 @@
         public function bindValues ($data) {
             
             foreach($data as $key=>$value) {
-                if(is_string($value)) {
-                    $this->bindValue(":".$key,$this->escape($value),PDO::PARAM_STR);
-                }elseif(is_numeric($value)) {
+                if(is_numeric($value)) {
                     $this->bindValue(":".$key,$this->escape($value),PDO::PARAM_INT);
                 }elseif(is_bool($value)) {
                     $this->bindValue(":".$key,$this->escape($value),PDO::PARAM_BOOL);
-                }
+                } else {
+                 $this->bindValue(":".$key,$this->escape($value),PDO::PARAM_STR);
             }
             
         }
